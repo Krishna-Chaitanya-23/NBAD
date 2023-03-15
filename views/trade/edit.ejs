@@ -1,0 +1,24 @@
+<%- include('../partials/header.ejs') %>
+<div class="content">
+    <div class="center-container">
+        <form action = '/trades/<%= trade.id%>?_method=PUT' method = 'POST' class="mt-20">
+            <label for="name">Title</label>
+            <input type="text" id="name" name="name" placeholder="Enter title.." value="<%= trade.name %>" required>
+
+            <label for="developer">Developer</label>
+            <input type="text" id="developer" name="developer" placeholder="Enter Developer.." required />
+      
+            <label for="category">Category</label>
+            <input type="text" id="category" name="category" placeholder="Enter Category.." required />
+
+            <label for="details">Detail</label>
+            <textarea id="details" name="details" placeholder="Enter detail.." required minlength="10"><%= trade.details %></textarea>
+
+            <label for="image">Image URL</label>
+            <input type="url" id="image" name="image" placeholder="Enter image url.." value="<%= trade.image %>" required>
+        
+            <button class="button submit-btn mb-100">Update trade</button>
+        </form>
+    </div>
+</div>
+<%- include('../partials/footer.ejs') %>

@@ -1,0 +1,36 @@
+<%- include('../partials/header.ejs')%>
+<div class="content">
+  <div class="center-container mb-100">
+    <h1>Your items available to trade :</h1>
+
+    <% if(trades.length){ %>
+
+    <form action="/trades/trade/<%= itemToTrade.id%>?_method=PUT" method="POST">
+      <table class="table">
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Status</th>
+        </tr>
+
+        <% trades.forEach(trade => { %>
+        <label class="textfont1">
+          <tr>
+            <td><input type="radio" id="<%= trade._id %>" name="trade" value="<%= trade._id %>" /></td>
+            <td><%= trade.name %></td>
+            <td><%= trade.category %></td>
+            <td><%= trade.status %></td>
+          </tr>
+        </label>
+
+        <% }); %>
+        <button class="button submit-btn">Trade</button>
+      </table>
+    </form>
+    <% } else { %>
+    <p>There are no items to display.</p>
+    <% } %>
+  </div>
+</div>
+<%- include('../partials/footer.ejs')%>

@@ -1,0 +1,67 @@
+<%- include('../partials/header.ejs')%>
+
+<div class="content">
+  <% if(ownTrade.tradeWith) { %>
+  <div>
+    <table>
+      <tr>
+        <th><h3><%= ownTrade.name%></h3></th>
+        <th><h3><%= othersTrade.name %></h3></th>
+      </tr>
+      <tr>
+        <td>
+          <div class="event-image-div"><img class="mlr-50 event-image" src="<%= ownTrade.image %>" alt="Logo" /></div>
+        </td>
+        <td>
+          <div class="event-image-div">
+            <img class="mlr-50 event-image" src="<%= othersTrade.image %>" alt="Logo" />
+          </div>
+        </td>
+        <td>
+          <form>
+            <button
+              class="button update-btn"
+              type="submit"
+              formaction="/users/trade/offer/accept/<%= othersTrade._id %>&<%= ownTrade._id %>?_method=PUT"
+              formmethod="post">
+              Accept
+            </button>
+            <button
+              class="button update-btn"
+              type="submit"
+              formaction="/users/trade/offer/cancel/<%= othersTrade._id %>&<%= ownTrade._id %>?_method=PUT"
+              formmethod="post">
+              Reject
+            </button>
+          </form>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <% } else{ %>
+  <div>
+    <table>
+      <tr>
+        <th><h3><%= ownTrade.name%></h3></th>
+        <th><h3><%= othersTrade.name %></h3></th>
+      </tr>
+      <tr>
+        <td>
+          <div class="event-image-div"><img class="mlr-50 event-image" src="<%= ownTrade.image %>" alt="Logo" /></div>
+        </td>
+        <td>
+          <div class="event-image-div">
+            <img class="mlr-50 event-image" src="<%= othersTrade.image %>" alt="Logo" />
+          </div>
+        </td>
+        <td>
+          <form action="/users/trade/offer/cancel/<%= othersTrade._id %>&<%= ownTrade._id %>?_method=PUT" method="POST">
+              <button class="button cancel-btn" type="submit">Cancel Offer</button>
+          </form>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <% } %>
+</div>
+<%- include('../partials/footer.ejs')%>

@@ -1,0 +1,18 @@
+<%- include('../partials/header.ejs') %>
+    <div class="content">
+        <div class="center-container mb-100">
+            <% if(trades.length){ %>
+                <div class="listing">
+                    <h3>Your Games</h3>
+                    <ol>
+                        <% trades.forEach(trade => { %> 
+                                <li><a href="/trades/<%= trade._id %>"><%= trade.name %></a></li>
+                        <% }); %>
+                    </ol>
+                </div>
+            <% } else { %>
+                <p>There are no trades to display.</p>
+            <% } %>
+        </div>
+    </div>
+<%- include('../partials/footer.ejs') %>

@@ -1,0 +1,32 @@
+<%- include('../partials/header.ejs') %>
+<div class="content">
+    <div class="center-container">
+        <form style="width: 100%;">
+            <div class="event-heading">
+                <h3 class="dis-in-bl"><%= trade.name %></h3>
+                <% if(user == trade.host._id) { %>
+                    <div class="float-right">
+                        <button class="button update-btn" type="submit" formmethod="GET" formaction="/trades/<%= trade._id %>/edit">Edit</button>
+                        <button class="button watch-btn" type="submit" formmethod="POST" formaction="/trades/<%= trade._id %>/watch">Watch</button>
+                    </div>
+                <% } else {%>
+                    <div class="float-right">
+                        <button class="button update-btn" type="submit" formmethod="POST" formaction="/users/trades/<%= trade._id %>">Trade</button>
+                        <button class="button watch-btn" type="submit" formmethod="POST" formaction="/trades/<%= trade._id %>/watch">Watch</button>
+                    </div>
+                <% } %> 
+            </div>
+        </form>
+        <div class="wrapper">
+            <div class="event-image-div"><img class="mlr-50 event-image" src="<%= trade.image %>" alt="Logo"></div>
+            <div class="detail">
+                <h4>Offered by <%= trade.host.firstName +' '+ trade.host.lastName %></h4>
+            </div>
+        </div>
+        <div class="description">
+            <h3>Details</h3>
+            <p><%= trade.details %></p>
+        </div>
+    </div>
+</div>
+<%- include('../partials/footer.ejs') %>
